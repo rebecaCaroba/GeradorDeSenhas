@@ -11,5 +11,9 @@ export const GlobalStyle = createGlobalStyle`
         background: ${(props) => props.theme['gray-800']};
         color: ${(props) => props.theme['white']};
         font-family: 'Roboto Mono', monospace;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
     }
 `
