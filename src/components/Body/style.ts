@@ -22,7 +22,7 @@ export const FormPass = styled.form`
     }
 
     input[type="range"]{
-        margin: 2rem 0  ;
+        margin: 2rem 0;
         width: 100%;
         height: 8px;
         -webkit-appearance: none;
@@ -39,6 +39,7 @@ export const FormPass = styled.form`
         border-radius: 50%;
         cursor: pointer;
     }
+
 
     input[type="checkbox"]{
         display: flex;
