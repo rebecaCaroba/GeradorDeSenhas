@@ -1,3 +1,5 @@
+import { Forca } from "../Força";
+import { AiOutlineArrowRight } from 'react-icons/ai'
 import { ContainerCaracter, ContainerForm, FormPass } from "./style";
 
 export function Body() {
@@ -25,6 +27,11 @@ export function Body() {
                     <input type="checkbox" name="include-symbols" id="symbols" />
                     <label htmlFor="include-symbols">Incluir símbolos </label>
                 </div>
+                <Forca />
+                <button>
+                    GERAR
+                    <AiOutlineArrowRight size={14   }/>
+                </button>
             </FormPass>
         </ContainerForm>
     )

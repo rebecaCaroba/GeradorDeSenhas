@@ -7,6 +7,6 @@ export const defaultThemes = {
     'black': '#100f15',
 
     
-    'purple': '#663399',
+    'green': '#a4ffaf',
     'yellow-100': '#f7ce62',
 }

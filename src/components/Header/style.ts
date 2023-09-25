@@ -17,7 +17,7 @@ export const ContainerHeader = styled.header`
     button {
         background: transparent;
         border: 0;
-        color: ${(props) => props.theme['purple']};
+        color: ${(props) => props.theme['green']};
         cursor: pointer;
     }
 
