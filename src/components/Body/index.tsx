@@ -1,4 +1,4 @@
-import { Forca } from "../Força";
+import { Strength } from "../Strength";
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { ContainerCaracter, ContainerForm, ContainerPass, FormPass } from "./style";
 import { useState } from "react";
@@ -8,6 +8,7 @@ export function Body() {
     const [password, setPassword] = useState('')
     const [CharacterLength, setCharacterLength] = useState(10)
     const [selectedValues, setSelectedValues] = useState([])
+    const [selectedValuesLength , setselectedValuesLength] = useState(0)
 
     const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     const symbols = [ '@','!', '$', '%', '&', '#', '*']
@@ -57,6 +58,7 @@ export function Body() {
     function handleListTypePass(e) {
         e.preventDefault()
         createPassword(selectedValues)
+        setselectedValuesLength(selectedValues.length)
     }
 
     return (
@@ -105,7 +107,7 @@ export function Body() {
                         />
                         <label htmlFor="include-symbols">Incluir símbolos </label>
                     </div>
-                    <Forca />
+                    <Strength Length={selectedValuesLength} />
                     <button type="submit">
                         GERAR
                         <AiOutlineArrowRight size={14} />

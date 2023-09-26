@@ -40,7 +40,7 @@ interface StatusProps {
     borderColor: keyof typeof BORDER_COLORS
 }
 
-export const Strength = styled.div<StatusProps>`
+export const ShowStrength = styled.div<StatusProps>`
     background-color: ${(props) => props.theme[STATUS_COLORS[props.statusColor]]};
     border: 2px solid  ${(props) => props.theme[BORDER_COLORS[props.borderColor]]};
     height: 30px;
