@@ -1,7 +1,6 @@
 import { PasswordStrength, ShowStrength } from "./style";
 
 export function Strength({ Length }) {
-
     function calculatePasswordStrength(size){
         switch(size){
             case 1:
@@ -13,14 +12,11 @@ export function Strength({ Length }) {
             case 4:
                 return 'FORTE'
             default:
-                return 'Erro'
+                return '--'
         }
     }
 
     const passStrength = calculatePasswordStrength(Length)
-
-    
-    
 
     return (
         <PasswordStrength>

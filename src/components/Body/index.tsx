@@ -1,65 +1,78 @@
-import { Strength } from "../Strength";
-import { AiOutlineArrowRight } from 'react-icons/ai'
-import { ContainerCaracter, ContainerForm, ContainerPass, FormPass } from "./style";
-import { useState } from "react";
-import { Header } from "../Header/Index";
+import React, { useState } from "react"
+import { AiOutlineArrowRight } from "react-icons/ai"
+import { ContainerCaracter, ContainerForm, ContainerPass, FormPass } from "./style"
+import { Header } from "../Header/Index"
+import { Strength } from "../Strength"
+
+interface SelectedValues {
+  uppercase: boolean
+  lowercase: boolean
+  numbers: boolean
+  symbols: boolean
+}
 
 export function Body() {
-    const [password, setPassword] = useState('')
-    const [CharacterLength, setCharacterLength] = useState(10)
-    const [selectedValues, setSelectedValues] = useState([])
-    const [selectedValuesLength , setselectedValuesLength] = useState(0)
+  const [password, setPassword] = useState<string>("")
+  const [CharacterLength, setCharacterLength] = useState<number>(10)
+  const [selectedValues, setSelectedValues] = useState<SelectedValues>({
+    uppercase: false,
+    lowercase: false,
+    numbers: false,
+    symbols: false,
+  })
+  const [selectedValuesLength, setselectedValuesLength] = useState<number>(0)
 
-    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const symbols = [ '@','!', '$', '%', '&', '#', '*']
-    const caracters = Array.from(Array(26)).map((_, i) => i + 97)
-    const LowercaseCaracters = caracters.map((item) => String.fromCharCode(item))
-    const UppercaseCaracters = LowercaseCaracters.map((item) => item.toUpperCase())
+  const numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const symbols: string[] = ["@", "!", "$", "%", "&", "#", "*"]
+  const caracters: number[] = Array.from(Array(26)).map((_, i) => i + 97)
+  const LowercaseCaracters: string[] = caracters.map((item) =>String.fromCharCode(item))
+  const UppercaseCaracters: string[] = LowercaseCaracters.map((item) =>item.toUpperCase())
 
-    function handleCharacterLength(e) {
-        setCharacterLength(e.target.value)
+  function handleCharacterLength(e: React.ChangeEvent<HTMLInputElement>) {
+    setCharacterLength(Number(e.target.value))
+  }
+
+  function createPassword(selectedValues: SelectedValues) {
+    let passwordChar = ""
+
+    if (selectedValues.uppercase) {
+      passwordChar += UppercaseCaracters.join("")
+    }
+    if (selectedValues.lowercase) {
+      passwordChar += LowercaseCaracters.join("")
+    }
+    if (selectedValues.numbers) {
+      passwordChar += numbers.join("")
+    }
+    if (selectedValues.symbols) {
+      passwordChar += symbols.join("")
     }
 
-    function createPassword(selectedValues) {
-        let passwordChar = ''
-    
-        if (selectedValues.includes('uppercase')) {
-            passwordChar += UppercaseCaracters.join('')
-        }
-        if (selectedValues.includes('lowercase')) {
-            passwordChar += LowercaseCaracters.join('')
-        }
-        if (selectedValues.includes('numbers')) {
-            passwordChar += numbers.join('')
-        }
-        if (selectedValues.includes('symbols')) {
-            passwordChar += symbols.join('')
-        }
-    
-        let passwordGenerate = "";
-        for (let i = 0; i < CharacterLength; i++) {
-            const randomIndex = Math.floor(Math.random() * passwordChar.length)
-            passwordGenerate += passwordChar[randomIndex]
-        }
-    
-        setPassword(passwordGenerate)
+    let passwordGenerate = ""
+    for (let i = 0;i < CharacterLength;i++) {
+      const randomIndex = Math.floor(Math.random() * passwordChar.length)
+      passwordGenerate += passwordChar[randomIndex]
     }
 
+    setPassword(passwordGenerate)
+  }
 
-    function handleCheckboxChange(e) {
-        const value = e.target.value
-        if (e.target.checked) {
-            setSelectedValues((state) => [...state, value])
-        } else {
-            setSelectedValues(selectedValues.filter((item) => item !== value))
-        }
-    }
+  function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, checked } = e.target
+    setSelectedValues((prevValues) => ({
+      ...prevValues,
+      [name]: checked,
+    }))
+  }
 
-    function handleListTypePass(e) {
-        e.preventDefault()
-        createPassword(selectedValues)
-        setselectedValuesLength(selectedValues.length)
-    }
+  function handleListTypePass(e: React.FormEvent) {
+    e.preventDefault()
+    console.log(selectedValues)
+    createPassword(selectedValues)
+    setselectedValuesLength(
+      Object.values(selectedValues).filter((value) => value).length
+    )
+  }
 
     return (
         <ContainerPass>
@@ -70,45 +83,52 @@ export function Body() {
                         <p>Comprimento dos caracteres</p>
                         <span>{CharacterLength}</span>
                     </ContainerCaracter>
-                    <input type="range" id="strLength" onChange={handleCharacterLength} min={10} max={25} />
+                    <input
+                    type="range"
+                    id="strLength"
+                    onChange={handleCharacterLength}
+                    min={10}
+                    max={25}
+                    value={CharacterLength}
+                    />
                     <div>
                         <input
-                            type="checkbox"
-                            name="include-uppercase"
-                            value="uppercase"
-                            onChange={handleCheckboxChange}
+                        type="checkbox"
+                        name="uppercase"
+                        checked={selectedValues.uppercase}
+                        onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="include-uppercase">Incluir letras maiúsculas</label>
+                        <label htmlFor="uppercase">Incluir letras maiúsculas</label>
+                    </div>
+                    <div>
+                    <input
+                        type="checkbox"
+                        name="lowercase"
+                        checked={selectedValues.lowercase}
+                        onChange={handleCheckboxChange}
+                    />
+                    <label htmlFor="lowercase">Incluir letras minúsculas</label>
                     </div>
                     <div>
                         <input
                             type="checkbox"
-                            name="include-lowercase"
-                            value="lowercase"
+                            name="numbers"
+                            checked={selectedValues.numbers}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="include-lowercase">Incluir letras minúsculas</label>
+                        <label htmlFor="numbers">Incluir números</label>
                     </div>
                     <div>
                         <input
                             type="checkbox"
-                            name="include-numbers"
-                            value="numbers"
+                            name="symbols"
+                            checked={selectedValues.symbols}
                             onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="include-numbers">Incluir numbers</label>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="include-symbols"
-                            value="symbols"
-                            onChange={handleCheckboxChange}
-                        />
-                        <label htmlFor="include-symbols">Incluir símbolos </label>
+                        <label htmlFor="symbols">Incluir símbolos</label>
                     </div>
                     <Strength Length={selectedValuesLength} />
-                    <button type="submit">
+                        <button type="submit">
                         GERAR
                         <AiOutlineArrowRight size={14} />
                     </button>
