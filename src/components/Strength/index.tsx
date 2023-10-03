@@ -1,7 +1,11 @@
 import { PasswordStrength, ShowStrength } from "./style";
 
-export function Strength({ Length }) {
-    function calculatePasswordStrength(size){
+interface StrengthProps {
+    Length: number
+}
+
+export function Strength({ Length }: StrengthProps) {
+    function calculatePasswordStrength(size: number){
         switch(size){
             case 1:
                 return 'MUITO FRACA'
@@ -15,9 +19,7 @@ export function Strength({ Length }) {
                 return '--'
         }
     }
-
     const passStrength = calculatePasswordStrength(Length)
-
     return (
         <PasswordStrength>
             <span>Força</span>
