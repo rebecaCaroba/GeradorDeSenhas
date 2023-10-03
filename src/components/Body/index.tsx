@@ -23,7 +23,7 @@ export function Body() {
   const [selectedValuesLength, setselectedValuesLength] = useState<number>(0)
 
   const numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  const symbols: string[] = ["@", "!", "$", "%", "&", "#", "*"]
+  const symbols: string[] = ["@", "!", "$", "%", "&", "#", "*", "_", "-"]
   const caracters: number[] = Array.from(Array(26)).map((_, i) => i + 97)
   const LowercaseCaracters: string[] = caracters.map((item) =>String.fromCharCode(item))
   const UppercaseCaracters: string[] = LowercaseCaracters.map((item) =>item.toUpperCase())
@@ -34,7 +34,7 @@ export function Body() {
 
   function createPassword(selectedValues: SelectedValues) {
     let passwordChar = ""
-
+    
     if (selectedValues.uppercase) {
       passwordChar += UppercaseCaracters.join("")
     }
@@ -46,6 +46,10 @@ export function Body() {
     }
     if (selectedValues.symbols) {
       passwordChar += symbols.join("")
+    }
+
+    if (passwordChar === "") {
+      passwordChar = '----';
     }
 
     let passwordGenerate = ""
@@ -67,7 +71,6 @@ export function Body() {
 
   function handleListTypePass(e: React.FormEvent) {
     e.preventDefault()
-    console.log(selectedValues)
     createPassword(selectedValues)
     setselectedValuesLength(
       Object.values(selectedValues).filter((value) => value).length

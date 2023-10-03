@@ -7,7 +7,7 @@ export function Header({ showPassword }) {
             <ContainerHeader>
                 <span>{showPassword}</span>
                 <button>
-                <FaRegCopy  size={24}/>
+                <FaRegCopy size={24}/>
                 </button>
             </ContainerHeader>
         </div>
