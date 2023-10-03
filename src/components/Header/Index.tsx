@@ -20,7 +20,7 @@ export function Header({ showPassword }: HeaderProps) {
     return (
         <div>
             <ContainerHeader>
-                <span>{showPassword}</span>
+                <div><span>{showPassword}</span></div>
                 <button onClick={handleCopyText}>
                     <FaRegCopy size={24} />
                 </button>

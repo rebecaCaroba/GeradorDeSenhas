@@ -8,7 +8,15 @@ export const ContainerHeader = styled.header`
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 550px) {
+        div {
+            overflow: scroll;
+            width: 90%;
+        }
+    }
+
     span {
+        max-height: 400px;
         color: ${(props) => props.theme['gray-300']};
         font-weight: 700;
         font-size: 25px;
