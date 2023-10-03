@@ -79,6 +79,7 @@ export function Body() {
 
     return (
         <ContainerPass>
+          <h1>Gerador de senhas</h1>
             <Header showPassword={password} />
             <ContainerForm>
                 <FormPass onSubmit={handleListTypePass}>
