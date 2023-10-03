@@ -1,13 +1,28 @@
-import { ContainerHeader } from "./style";
+import { ContainerHeader } from "./style"
 import { FaRegCopy } from 'react-icons/fa'
 
-export function Header({ showPassword }) {
+interface HeaderProps {
+    showPassword: string
+}
+
+export function Header({ showPassword }: HeaderProps) {
+    function handleCopyText() {
+        const textArea = document.createElement('textarea');
+        textArea.value = showPassword;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Texto copiado para a área de transferência!');
+
+    }
+
     return (
         <div>
             <ContainerHeader>
                 <span>{showPassword}</span>
-                <button>
-                <FaRegCopy size={24}/>
+                <button onClick={handleCopyText}>
+                    <FaRegCopy size={24} />
                 </button>
             </ContainerHeader>
         </div>
