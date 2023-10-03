@@ -79,7 +79,6 @@ export function Body() {
 
     return (
         <ContainerPass>
-          <h1>Gerador de senhas</h1>
             <Header showPassword={password} />
             <ContainerForm>
                 <FormPass onSubmit={handleListTypePass}>
@@ -99,6 +98,7 @@ export function Body() {
                         <input
                         type="checkbox"
                         name="uppercase"
+                        id="uppercase"
                         checked={selectedValues.uppercase}
                         onChange={handleCheckboxChange}
                         />
@@ -108,6 +108,7 @@ export function Body() {
                     <input
                         type="checkbox"
                         name="lowercase"
+                        id="lowercase"
                         checked={selectedValues.lowercase}
                         onChange={handleCheckboxChange}
                     />
@@ -117,6 +118,7 @@ export function Body() {
                         <input
                             type="checkbox"
                             name="numbers"
+                            id="numbers"
                             checked={selectedValues.numbers}
                             onChange={handleCheckboxChange}
                         />
@@ -126,6 +128,7 @@ export function Body() {
                         <input
                             type="checkbox"
                             name="symbols"
+                            id="symbols"
                             checked={selectedValues.symbols}
                             onChange={handleCheckboxChange}
                         />

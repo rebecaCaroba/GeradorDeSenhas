@@ -76,7 +76,7 @@ export const FormPass = styled.form`
     }
 
     input[type="checkbox"]:checked:before {
-        content: url('./src/assets/icon-check.svg');
+        content: url('/src/assets/icon-check.svg');
     }
 
     button {
