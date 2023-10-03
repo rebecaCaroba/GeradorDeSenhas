@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 export const ContainerPass = styled.div`
     width: 500px;
-    
     h1 {
         color: ${(props) => props.theme['gray-200']};
         text-align: center;
         margin: 2rem;
     }
+
+    @media (max-width: 550px) {
+        max-width: 330px;
+    }
+
 `
 
 export const ContainerForm = styled.div`
@@ -105,4 +109,5 @@ export const ContainerCaracter = styled.section`
         font-weight: bold;
         color: ${(props) => props.theme['green']};
     }
+
 `

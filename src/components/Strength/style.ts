@@ -4,7 +4,7 @@ export const PasswordStrength = styled.div`
     margin: 1.25rem 0;
     padding: 0 1.25rem;
     background-color: ${(props) => props.theme['gray-800']};
-    width: 450px;
+    width: 100%;
     height: 60px;
     display: flex;
     align-items: center;
@@ -22,6 +22,8 @@ export const PasswordStrength = styled.div`
         font-weight: 700;
         font-size: 20px;
     }
+
+    
 `
 
 const STATUS_COLORS = {
